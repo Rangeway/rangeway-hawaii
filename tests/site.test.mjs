@@ -9,6 +9,7 @@ const socialPreview = await readFile(new URL("../tools/social-preview.html", imp
 test("uses the production canonical domain and social image", () => {
   assert.match(html, /https:\/\/hawaii\.rangeway\.co\//);
   assert.match(html, /rangeway-hawaii-social\.jpg/);
+  assert.match(html, /\/css\/style\.css\?v=20260724-2/);
   assert.match(socialPreview, /hawaii-basecamp-phase2-1\.png/);
 });
 
