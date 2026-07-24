@@ -13,6 +13,13 @@ test("uses the production canonical domain and social image", () => {
   assert.match(socialPreview, /hawaii-basecamp-phase2-1\.png/);
 });
 
+test("uses the approved page and social title", () => {
+  const title = "Rangeway Hawai'i | Travel further. Stop better.";
+  assert.match(html, new RegExp(`<title>${title.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}</title>`));
+  assert.match(html, new RegExp(`property="og:title" content="${title.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}"`));
+  assert.match(html, new RegExp(`name="twitter:title" content="${title.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}"`));
+});
+
 test("labels every concept image as conceptual", () => {
   assert.match(html, /Phase Two concept vision · No site announced/);
   assert.match(html, /Concept visualization · Long-term design study/);
@@ -74,7 +81,9 @@ test("centers supporting copy beside section headings", () => {
   assert.match(css, /\.index-row\s*\{[^}]*align-items:\s*center/s);
 });
 
-test("centers the Hawaiʻi Island header label with the wordmark", () => {
+test("centers the Hawai'i header label with the wordmark", () => {
+  assert.match(html, /<span class="masthead__site">Hawai'i<\/span>/);
+  assert.doesNotMatch(html, /<span class="masthead__site">Hawaiʻi Island<\/span>/);
   assert.match(css, /\.masthead__site\s*\{[^}]*align-items:\s*center/s);
   assert.match(css, /\.masthead__site\s*\{[^}]*align-self:\s*center/s);
 });
