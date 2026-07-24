@@ -4,16 +4,18 @@ import test from "node:test";
 
 const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
 const css = await readFile(new URL("../css/style.css", import.meta.url), "utf8");
+const socialPreview = await readFile(new URL("../tools/social-preview.html", import.meta.url), "utf8");
 
 test("uses the production canonical domain and social image", () => {
   assert.match(html, /https:\/\/hawaii\.rangeway\.co\//);
   assert.match(html, /rangeway-hawaii-social\.jpg/);
+  assert.match(socialPreview, /hawaii-basecamp-phase2-1\.png/);
 });
 
 test("labels every concept image as conceptual", () => {
-  assert.match(html, /Concept vision · No site announced/);
+  assert.match(html, /Phase Two concept vision · No site announced/);
   assert.match(html, /Concept visualization · Long-term design study/);
-  assert.match(html, /Concept only · Final location, format, and scope remain open/);
+  assert.match(html, /Phase One design study · A smaller roadside stop that could evolve toward the Phase Two vision above/);
 });
 
 test("does not publish restricted project claims", () => {
@@ -47,8 +49,27 @@ test("includes baseline accessibility features", () => {
 test("uses only approved concept derivatives", () => {
   const imageSources = [...html.matchAll(/<img[^>]+src="([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(imageSources, [
-    "/images/hawaii-basecamp-phase1.webp",
+    "/images/hawaii-basecamp-long-view.webp",
     "/images/hawaii-basecamp-hospitality.webp",
-    "/images/hawaii-basecamp-long-view.webp"
+    "/images/hawaii-basecamp-phase1.webp"
   ]);
+});
+
+test("uses the approved cultural direction without the rejected hero treatment", () => {
+  assert.match(html, /Hoʻokipa/);
+  assert.match(html, /<span>Hawaiʻi<\/span>/);
+  assert.doesNotMatch(html, /<span>Hawaiʻi\.<\/span>/);
+  assert.doesNotMatch(css, /content:\s*"ISLAND"/);
+});
+
+test("centers supporting copy beside section headings", () => {
+  assert.match(css, /\.section-head\s*\{[^}]*align-items:\s*center/s);
+  assert.match(css, /\.updates__grid\s*\{[^}]*align-items:\s*center/s);
+  assert.match(css, /\.split-copy\s*\{[^}]*align-items:\s*center/s);
+  assert.match(css, /\.index-row\s*\{[^}]*align-items:\s*center/s);
+});
+
+test("centers the Hawaiʻi Island header label with the wordmark", () => {
+  assert.match(css, /\.masthead__site\s*\{[^}]*align-items:\s*center/s);
+  assert.match(css, /\.masthead__site\s*\{[^}]*align-self:\s*center/s);
 });

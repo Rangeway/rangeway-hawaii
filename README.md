@@ -21,4 +21,6 @@ npm test
 npm run check
 ```
 
-See `SOURCE_ASSETS.md` for the approved concept-art provenance and `DEPLOY.md` for production operations.
+See `SOURCE_ASSETS.md` for the approved concept-art provenance,
+`CONTENT_SOURCES.md` for cultural-language references, and `DEPLOY.md` for
+production operations.

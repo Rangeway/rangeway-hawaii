@@ -36,7 +36,7 @@ jobs:
           rsync -a --delete \
             --exclude='.git' --exclude='.github' --exclude='.DS_Store' \
             --exclude='.gitignore' --exclude='README.md' --exclude='DEPLOY.md' \
-            --exclude='SOURCE_ASSETS.md' --exclude='source-assets' --exclude='tests' \
+            --exclude='SOURCE_ASSETS.md' --exclude='CONTENT_SOURCES.md' --exclude='source-assets' --exclude='tests' \
             --exclude='tools' --exclude='ops' --exclude='package.json' --exclude='CNAME' \
             ./ /tmp/site-dist/
           cd /tmp/site-dist
