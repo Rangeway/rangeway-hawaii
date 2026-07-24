@@ -243,9 +243,7 @@ h3 {
   min-height: 100svh;
   padding-top: var(--nav);
   grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
-  background:
-    radial-gradient(circle at 18% 16%, rgb(255 248 234 / 42%) 0 7%, transparent 7.3%),
-    linear-gradient(150deg, var(--sun-soft), var(--sun));
+  background: linear-gradient(150deg, var(--sun-soft), var(--sun));
 }
 
 .cover__story {

@@ -60,6 +60,10 @@ test("uses the approved cultural direction without the rejected hero treatment",
   assert.match(html, /<span>Hawaiʻi<\/span>/);
   assert.doesNotMatch(html, /<span>Hawaiʻi\.<\/span>/);
   assert.doesNotMatch(css, /content:\s*"ISLAND"/);
+  assert.doesNotMatch(
+    css.match(/\.cover\s*\{[^}]*\}/s)?.[0] ?? "",
+    /radial-gradient/
+  );
 });
 
 test("centers supporting copy beside section headings", () => {
