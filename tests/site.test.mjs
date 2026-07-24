@@ -77,3 +77,21 @@ test("centers the Hawaiʻi Island header label with the wordmark", () => {
   assert.match(css, /\.masthead__site\s*\{[^}]*align-items:\s*center/s);
   assert.match(css, /\.masthead__site\s*\{[^}]*align-self:\s*center/s);
 });
+
+test("places hospitality copy lower in its image block", () => {
+  assert.match(
+    css,
+    /\.cinema\s*\{[^}]*padding-top:\s*clamp\(48px,\s*5vw,\s*80px\)/s
+  );
+  assert.match(
+    css,
+    /\.cinema__content\s*\{[^}]*padding-bottom:\s*clamp\(44px,\s*5vw,\s*84px\)/s
+  );
+});
+
+test("links the Rangeway X account from the footer", () => {
+  assert.match(
+    html,
+    /href="https:\/\/x\.com\/rangewayev"[^>]*>X<\/a>/
+  );
+});
