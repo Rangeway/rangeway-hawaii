@@ -14,7 +14,7 @@ test("uses the production canonical domain and social image", () => {
 });
 
 test("uses the approved page and social title", () => {
-  const title = "Rangeway Hawai'i | Travel further. Stop better.";
+  const title = "Rangeway Hawai'i | Travel farther. Stop better.";
   assert.match(html, new RegExp(`<title>${title.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}</title>`));
   assert.match(html, new RegExp(`property="og:title" content="${title.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}"`));
   assert.match(html, new RegExp(`name="twitter:title" content="${title.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\\\$&")}"`));
