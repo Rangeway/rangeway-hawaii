@@ -96,3 +96,10 @@ test("links the Rangeway X account from the footer", () => {
     /href="https:\/\/x\.com\/rangewayev"[^>]*>X<\/a>/
   );
 });
+
+test("orders footer social links alphabetically", () => {
+  assert.match(
+    html,
+    /Field Notes<\/a>\s*<a[^>]*>Instagram<\/a>\s*<a[^>]*>LinkedIn<\/a>\s*<a[^>]*>X<\/a>/
+  );
+});
